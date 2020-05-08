@@ -1,0 +1,27 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - 'master'
+    tags-ignore:
+      - '**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Prepare repository
+        run: git checkout "${GITHUB_REF:11}"
+      - name: Setup Java environment based on AdoptOpenJDK
+        uses: joschi/setup-jdk@v1.0.0
+        with:
+          java-version: openjdk11
+          openjdk_impl: openj9
+      - name: Compile
+        run: ./gradlew classes
+      - name: Test
+        run: ./gradlew test
