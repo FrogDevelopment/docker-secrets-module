@@ -1,0 +1,84 @@
+plugins {
+    id 'java-library'
+    id 'maven'
+    id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
+    id 'org.springframework.boot' version '2.2.7.RELEASE'
+    id 'io.spring.dependency-management' version "1.0.9.RELEASE"
+}
+
+group = 'com.frog-development'
+description = 'docker-secrets-module'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.platform:junit-platform-runner'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+jgitver {
+    strategy = 'PATTERN'
+    versionPattern = '${v}-SNAPSHOT'
+    tagVersionPattern = '${v}'
+}
+
+test {
+    reports.html.enabled = false
+
+    useJUnitPlatform {
+        includeTags 'unitTest'
+        excludeTags 'integrationTest'
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    classifier 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier 'javadoc'
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+// To specify a license in the pom:
+install {
+  repositories.mavenInstaller {
+    pom.project {
+      licenses {
+        license {
+          name 'The Apache Software License, Version 2.0'
+          url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          distribution 'repo'
+        }
+      }
+    }
+  }
+}
+
+jar {
+    enabled true
+}
+
+wrapper {
+    gradleVersion = "6.4"
+    distributionType = Wrapper.DistributionType.ALL
+}
