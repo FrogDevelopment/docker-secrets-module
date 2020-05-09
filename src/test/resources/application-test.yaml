@@ -1,0 +1,2 @@
+docker-secrets:
+  path: ${java.io.tmpdir}/secrets/
