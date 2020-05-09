@@ -14,7 +14,7 @@ Add it in your root `build.gradle` at the end of repositories:
 ##### Step 2. Add the dependency
 ```groovy
 	dependencies {
-	        implementation 'com.frog-development:docker-secrets-module:Tag'
+	        implementation 'com.frog-development:docker-secrets-module:1.0.0'
 	}
 ```
 ##### Step 3. Use the Docker Secrets defined for your service.
