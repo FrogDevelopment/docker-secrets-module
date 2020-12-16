@@ -2,8 +2,8 @@ plugins {
     id 'java-library'
     id 'maven'
     id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
-    id 'org.springframework.boot' version '2.2.7.RELEASE'
-    id 'io.spring.dependency-management' version "1.0.10.RELEASE"
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 }
 
 group = 'com.frog-development'
