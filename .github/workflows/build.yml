@@ -13,15 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Prepare repository
-        run: git checkout "${GITHUB_REF:11}"
-      - name: Setup Java environment based on AdoptOpenJDK
-        uses: joschi/setup-jdk@v1.0.0
+      - name: Checkout with all branches and tags
+        uses: actions/checkout@v2
         with:
-          java-version: openjdk11
-          openjdk_impl: openj9
+          fetch-depth: 0
+
+      - name: Setup Java 14
+        uses: joschi/setup-jdk@v2
+        with:
+          java-version: '14'
+
       - name: Compile
-        run: ./gradlew classes
+        run: ./gradlew classes version
+
       - name: Test
         run: ./gradlew test
