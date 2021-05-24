@@ -1,6 +1,6 @@
 plugins {
     id 'java-library'
-    id 'maven'
+//    id 'maven'
     id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
     id 'org.springframework.boot' version '2.5.0'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -59,25 +59,25 @@ artifacts {
 }
 
 // To specify a license in the pom:
-install {
-    repositories.mavenInstaller {
-        pom.project {
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-        }
-    }
-}
+//install {
+//    repositories.mavenInstaller {
+//        pom.project {
+//            licenses {
+//                license {
+//                    name 'The Apache Software License, Version 2.0'
+//                    url 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    distribution 'repo'
+//                }
+//            }
+//        }
+//    }
+//}
 
 jar {
     enabled true
 }
 
 wrapper {
-    gradleVersion = '6.6.1'
+    gradleVersion = '7.0.2'
     distributionType = Wrapper.DistributionType.ALL
 }
