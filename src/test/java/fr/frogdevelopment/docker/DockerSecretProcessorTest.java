@@ -1,10 +1,5 @@
 package fr.frogdevelopment.docker;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +7,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 @ActiveProfiles("test")
 @SpringBootTest(classes = DockerSecretProcessor.class)
-public class DockerSecretProcessorTest {
+class DockerSecretProcessorTest {
 
     @Autowired
     private Environment environment;

@@ -1,14 +1,5 @@
 package fr.frogdevelopment.docker;
 
-import static java.lang.String.format;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.boot.logging.DeferredLog;
@@ -17,6 +8,16 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.lang.String.format;
 
 @Component
 public class DockerSecretProcessor implements EnvironmentPostProcessor, ApplicationListener<ContextRefreshedEvent> {
@@ -39,8 +40,7 @@ public class DockerSecretProcessor implements EnvironmentPostProcessor, Applicat
         }
 
         if (!Files.isDirectory(path)) {
-            logger.error(
-                    String.format("Docker Secrets directory [%s] is not a directory! Skipping loading.", pathValue));
+            logger.error(format("Docker Secrets directory [%s] is not a directory! Skipping loading.", pathValue));
             return;
         }
 
